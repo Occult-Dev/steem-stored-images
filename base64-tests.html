@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>steem vector testing</title>
+        <style>
+            img {
+                image-rendering: pixelated;
+                width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <span id="image-1"></span>
+        <a href="https://steempeak.com/testing/@spencers-stuff/imagetesting2-01-29-20">Link For Image #1</a>
+        <img id="image-2" />
+        <a href="https://steempeak.com/testing/@spencers-stuff/imagetesting3-01-29-20">Link For Image #2</a>
+    </body>
+    <script src="./steem.min.js"></script>
+    <script>
+        window.onload = () => {
+            steem.api.getContent('spencers-stuff', 'imagetesting2-01-29-20', function(err, result) {
+                document.getElementById('image-1').innerHTML = result.body;
+            });
+            steem.api.getContent('spencers-stuff', 'imagetesting3-01-29-20', function(err, result) {
+                document.getElementById('image-2').src = `data:image/png;base64, ${result.body}`;
+            });
+        }
+    </script>
+</html>
